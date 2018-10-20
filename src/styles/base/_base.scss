@@ -1,0 +1,27 @@
+/*
+    we'r setting whole HTML font size to 62.5% of current size because
+       62.5% => .625 which on multiplication with 16px ==> 16*0.625 = 10
+    so now if I want 16 px using rem just use 1.6rem  viz 1.6*10 = 16px
+*/
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.6rem;
+    // background: $dark-blue;
+}
+
+button {
+    cursor: pointer;
+    
+    &:disabled {
+        cursor: default;
+    }
+}
+
+.is-active {
+    color: aqua;
+    font-weight: 700;
+}
