@@ -1,6 +1,6 @@
 const path = require('path');
 module.exports = {
-   entry: './src/playground/redux-reducers-expensify.jsx',
+   entry: './src/app.jsx',
     output: {
         path: path.resolve(__dirname,'public'),
         publicPath: '/',
