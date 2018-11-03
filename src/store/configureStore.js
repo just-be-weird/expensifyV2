@@ -10,7 +10,8 @@ export default () => {
         combineReducers({
             expenses: expensesReducer,//root_stateProperty: reducer which will manage it
             filters: filtersReducer
-        })
+        }),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     );
     
     return store;
