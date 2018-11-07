@@ -10,24 +10,12 @@ import 'normalize.css/normalize.css';
 import './styles/style.scss';
 
 const store = configureStore();
-store.dispatch(addExpenseAG({
-    description: 'Nov JIO bill',
-    note: 'This was the gas bill payment for the feb month #SO1256.',
-    amount: 499,
-    createdAt: 2601
-}));
-store.dispatch(addExpenseAG({
-    description: 'Feb Gas bill',
-    note: 'This was the gas bill payment for the feb month #SO1256.',
-    amount: 600,
-    createdAt: 10020
-}));
-store.dispatch(addExpenseAG({
-    description: 'Jan Water bill',
-    note: 'This was the final payment for this address.',
-    amount: 1250,
-    createdAt: 400
-}));
+// store.dispatch(addExpenseAG({
+//     description: 'Nov JIO bill',
+//     note: 'This was the gas bill payment for the feb month #SO1256.',
+//     amount: 499,
+//     createdAt: 2601
+// }));
 store.subscribe(()=>{
     const state = store.getState()
     console.log(state);
