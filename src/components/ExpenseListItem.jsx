@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
-import numral from 'numeral';
+import numeral from 'numeral';
 
 const ExpenseListItem = ({ id, description, amount, createdAt }) => (//as dispatch is on props 
     <div>
