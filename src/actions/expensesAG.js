@@ -1,5 +1,12 @@
 import uuid from 'uuid';
 
+/**
+ * component calls action generator
+ * action generator then returns object
+ * component dispatches objects
+ * redux store changes
+ */
+
 // ADD_EXPENSE action genrator
 //Every AG needs type property to be set and return
 export const addExpenseAG = (
@@ -19,6 +26,13 @@ export const addExpenseAG = (
         note
     }
 });
+
+export const startAddExpenseAG = () => {
+    return (dispatch) => {
+
+    }
+};
+
 // REMOVE_EXPENSE action genrator
 export const removeExpenseAG = ({ id } = {}) => ({
     type: 'REMOVE_EXPENSE',
