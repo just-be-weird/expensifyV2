@@ -7,6 +7,7 @@ const filtersReducerStatDefaults = {
 };
 
 // Filter Reducer -> filtersReducer
+//while calling filtersReducer(currentState, action)
 export default (state = filtersReducerStatDefaults, action) => {
     switch (action.type) {
         case 'SET_TEXT_FILTER':
