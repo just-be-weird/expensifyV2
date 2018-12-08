@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseListItem from './ExpenseListItem';
 import visibleExpenses from '../selectors/expenses';
-const ExpenseList = (props) => (//unconnected component
+
+export const ExpenseList = (props) => (//unconnected component
     <div>
-        <h1>Expense List</h1>
         {
             props.expenses.map((expense)=> {
                 return <ExpenseListItem key={expense.id} {...expense}/>
