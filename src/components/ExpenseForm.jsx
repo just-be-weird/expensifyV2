@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
-import 'react-dates/lib/css/_datepicker.css';
 
 export default class ExpenseForm extends React.Component {
     constructor(props) {// to access props we need to constructor function
@@ -43,7 +42,7 @@ export default class ExpenseForm extends React.Component {
             this.setState(()=> ( { createdAt } ));
         }
     }
-    onFocusChangeHandler ( { focused }) {
+    onFocusChangeHandler ( { focused }) {// called by react-dates 
         this.setState(()=> ( { calenderFocused: focused } ));
     }
     submitHandeler (e) {
@@ -51,6 +50,7 @@ export default class ExpenseForm extends React.Component {
         if (!this.state.description || !this.state.amount) {
             this.setState(()=>( { error: "Please provide description and amount!"} ));
         } else {
+            //to test this part will be using spies
             this.setState(()=>( { error: ""} ));
             this.props.onSubmit({
                 description: this.state.description,
