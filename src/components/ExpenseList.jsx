@@ -6,9 +6,16 @@ import visibleExpenses from '../selectors/expenses';
 export const ExpenseList = (props) => (//unconnected component
     <div>
         {
-            props.expenses.map((expense)=> {
-                return <ExpenseListItem key={expense.id} {...expense}/>
-            })
+            props.expenses.length == 0 ? ( 
+                <p> No expenses to show. </p>
+                ) :
+                (
+                    props.expenses.map((expense) => {
+                        return < ExpenseListItem 
+                                key = { expense.id} { ...expense}
+                            />
+                    })
+                )
         }
     </div>
 );
