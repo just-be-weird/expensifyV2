@@ -7,9 +7,9 @@ let editExpenseAG, removeExpenseAG, history, wrapper;
 
 beforeEach(() => {
     editExpenseAG = jest.fn();
-  removeExpenseAG = jest.fn();
-  history = { push: jest.fn() };
-  wrapper = shallow(
+    removeExpenseAG = jest.fn();
+    history = { push: jest.fn() };
+    wrapper = shallow(
     <EditExpensePage
       editExpenseAG={editExpenseAG}
       removeExpenseAG={removeExpenseAG}
