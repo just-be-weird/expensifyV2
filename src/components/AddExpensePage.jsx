@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseForm from "./ExpenseForm";
-import { addExpenseAG } from '../actions/expensesAG'
+import { startAddExpenseAG } from '../actions/expensesAG';
 
 export class AddExpensePage extends React.Component {
     constructor(props) {
@@ -21,7 +21,7 @@ export class AddExpensePage extends React.Component {
             it's bit difficutl to test this component. So use mapDispatchToProps an
             othr method provided by redux to help out while using dispatch.
         */
-        this.props.addExpenseAG(expense);
+        this.props.startAddExpenseAG(expense);
         this.props.history.push('/');
     }
     render() {
@@ -37,7 +37,7 @@ export class AddExpensePage extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    addExpenseAG: (expense) => dispatch(addExpenseAG(expense))
+    startAddExpenseAG: (expense) => dispatch(startAddExpenseAG(expense))
 });
 export default connect(undefined, mapDispatchToProps)(AddExpensePage);
 /**

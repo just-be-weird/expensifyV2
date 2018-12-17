@@ -4,6 +4,7 @@ import filtersReducer from '../reducers/filters';
 import thunk from 'redux-thunk'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+//if redux devtool extension is avialable set that up else use redux's compose() 
 //Store creation
 
 export default () => {
@@ -19,3 +20,7 @@ export default () => {
     
     return store;
 }
+
+/**
+ * applyMiddleware lets u apply middleware like thunk
+ */
