@@ -1,9 +1,24 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { addExpenseAG, removeExpenseAG, editExpenseAG, startAddExpenseAG } from '../../actions/expensesAG';
+import { 
+            addExpenseAG, 
+            editExpenseAG, 
+            removeExpenseAG, 
+            setExpensesAG, 
+            startAddExpenseAG,
+            startRemoveExpenseAG, 
+            startSetExpensesAG
+        } from '../../actions/expensesAG';
 import expenses from '../fixtures/expenses';
 import database from '../../firebase/firebase';
 
+beforeEach((done) => {
+    const expenseData = {};
+    expenses.forEach(({ id, description, amount, note, createdAt}) => {
+        expenseData[id] = { description, amount, note, createdAt }
+    });
+    database.ref('expense').set(expenseData).then(() => done());//we are using done for creating
+});
 const createMockStore = configureMockStore([thunk]);
 
 test('This should setup remove expense action object', () => {
@@ -12,6 +27,22 @@ test('This should setup remove expense action object', () => {
         type: 'REMOVE_EXPENSE',
         id: 'abc11810'
     })
+});
+
+test('This should setup remove expense from firebase', (done) => {
+    const store = createMockStore({});
+    const id = expenses[2].id;
+    store.dispatch(startRemoveExpenseAG({ id })).then(() => {
+        const action = store.getActions();
+        expect(action[0]).toEqual({
+            type: 'REMOVE_EXPENSE',
+            id
+        });
+        return database.ref(`expenses/${id}`).once('value');
+    }).then((snapshot) => {
+        expect(snapshot.val()).toBeFalsy();
+        done();
+    });
 });
 
 test('This should test edit expense action object', () => {
@@ -88,17 +119,10 @@ test('should add expense with defaults to database and store', (done) => {
 });
 
 
-// test('This shuld setup add expense object with default values', () => {
-//     const result = addExpenseAG({ //description: '' 
-//     });
-//     expect(result).toEqual({
-//         type: 'ADD_EXPENSE',
-//         expense: {
-//             id: expect.any(String),
-//             description: '',
-//             note: '',
-//             amount: 0,
-//             createdAt: 0
-//         }
-//     });
-// });
+test('This shuld setup set expense action object with data', () => {
+    const result = setExpensesAG(expenses);
+    expect(result).toEqual({
+        type: 'SET_EXPENSES',
+        expenses
+    });
+});

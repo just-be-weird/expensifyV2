@@ -48,9 +48,38 @@ export const removeExpenseAG = ({ id } = {}) => ({
     type: 'REMOVE_EXPENSE',
     id
 });
+export const startRemoveExpenseAG = ({ id } = {}) => {
+    return (dispatch) => {
+        return database.ref(`expenses/${id}`).remove().then(()=> {
+            dispatch(removeExpenseAG({ id }));
+        });
+    }
+}
 // EDIT_EXPENSE action genrator
 export const editExpenseAG = (id, updates) => ({
     type: 'EDIT_EXPENSE',
     id,
     updates
 });
+// SET_EXPENSES AG
+export const setExpensesAG = (expenses) => ({
+    type: 'SET_EXPENSES',
+    expenses
+});
+export const startSetExpensesAG = () => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/expenses`).once('value').then((snapshot) => {
+      const expenses = [];
+
+      snapshot.forEach((childSnapshot) => {
+        expenses.push({
+          id: childSnapshot.key,
+          ...childSnapshot.val()
+        });
+      });
+
+      dispatch(setExpenses(expenses));
+    });
+  };
+};
